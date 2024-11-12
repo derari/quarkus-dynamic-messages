@@ -9,6 +9,7 @@ import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
+import org.cthul.quarkus.dynamicmessages.DynamicTemplates;
 import org.jboss.resteasy.reactive.RestPath;
 
 @Path("/hello")
@@ -42,7 +43,7 @@ public class GreetingResource {
     @Produces(MediaType.TEXT_HTML)
     @Path("set/{locale}/{key}/{value}")
     public String set(@RestPath String locale, @RestPath String key, @RestPath String value) {
-        dynamicTemplates.update(locale, key, value);
+//        dynamicTemplates.update(locale, key, value);
         return value;
     }
 }

@@ -1,0 +1,13 @@
+{
+  "key": {
+    "bob.the.key": {
+      "value": "bob.the.key"
+    }
+  },
+  "default": {
+    "bob.the.key": "Hi {name}"
+  },
+  "de": {
+    "bob.the.key": "Guten Tag"
+  }
+}

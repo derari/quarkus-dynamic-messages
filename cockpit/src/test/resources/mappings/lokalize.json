@@ -1,0 +1,14 @@
+{
+    "priority": 2,
+    "request": {
+        "urlPath": "/cockpit/api/lokalize/project/bob"
+    },
+    "response": {
+        "status": 200,
+        "bodyFileName": "lokalize.json",
+        "headers": {
+            "Content-Type": "application/json"
+        }
+    }
+}
+
