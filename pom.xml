@@ -4,9 +4,26 @@
 
     <groupId>org.cthul.quarkus-dynamic-messages</groupId>
     <artifactId>quarkus-dynamic-messages-parent</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-
+    <version>0.0.1</version>
     <packaging>pom</packaging>
+
+    <name>Quarkus Dynamic Messages (Parent)</name>
+    <description>Dynamic message bundle and template reloading for Quarkus</description>
+    <url>https://github.com/derari/quarkus-dynamic-messages</url>
+    <scm>
+        <url>https://github.com/derari/quarkus-dynamic-messages.git</url>
+    </scm>
+    <licenses>
+        <license>
+            <name>MIT</name>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>Arian Treffer</name>
+        </developer>
+    </developers>
+
 
     <properties>
         <compiler-plugin.version>3.12.1</compiler-plugin.version>
@@ -92,6 +109,57 @@
                 <skipITs>false</skipITs>
                 <quarkus.native.enabled>true</quarkus.native.enabled>
             </properties>
+        </profile>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.5</version>
+                        <executions>
+                            <execution>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>1.6.13</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>ossrh</serverId>
+                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
     </profiles>
 </project>
