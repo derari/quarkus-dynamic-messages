@@ -1,0 +1,14 @@
+{
+    "priority": 2,
+    "request": {
+        "urlPath": "/cockpit/api/content/items/my-items"
+    },
+    "response": {
+        "status": 200,
+        "bodyFileName": "items.json",
+        "headers": {
+            "Content-Type": "application/json"
+        }
+    }
+}
+

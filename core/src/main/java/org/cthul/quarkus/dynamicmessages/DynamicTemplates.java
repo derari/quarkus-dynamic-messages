@@ -1,17 +1,15 @@
 package org.cthul.quarkus.dynamicmessages;
 
-import io.quarkus.arc.All;
-import io.quarkus.logging.Log;
 import io.quarkus.qute.Engine;
 import io.quarkus.qute.TemplateLocator;
-import io.quarkus.qute.runtime.MessageBundleRecorder;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.event.Observes;
 import jakarta.enterprise.event.Startup;
 import jakarta.enterprise.inject.Instance;
 import jakarta.inject.Inject;
 
-import java.util.*;
+import java.util.Optional;
+import java.util.Set;
 
 @ApplicationScoped
 public class DynamicTemplates implements TemplateLocator {
@@ -20,15 +18,10 @@ public class DynamicTemplates implements TemplateLocator {
     Engine qute;
 
     @Inject
-    MessageBundleRecorder.BundleContext ctx;
-
-    @Inject
     Instance<DynamicTemplateLocator> locators;
 
     void init(@Observes Startup ev) {
-        var messageKeys = new HashSet<>(ctx.getMessageTemplates().keySet());
-        messageKeys.forEach(k -> Log.infof("Found key %s", k));
-        locators.stream().forEach(locator -> locator.initialize(messageKeys));
+        locators.stream().forEach(locator -> locator.initialize(Set.of()));
     }
 
     public void reset(String key) {
@@ -61,5 +54,4 @@ public class DynamicTemplates implements TemplateLocator {
                 .map(Optional::get)
                 .findFirst();
     }
-
 }

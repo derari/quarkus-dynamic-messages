@@ -25,6 +25,11 @@ public interface CockpitConfig {
     @ConfigDocMapKey("mapping-name")
     Map<String, ProjectConfig> mappings();
 
+    @WithParentName
+    @WithUnnamedKey(DEFAULT_MAPPING)
+    @ConfigDocMapKey("mapping-name")
+    Map<String, CollectionConfig> collections();
+
     interface ProjectConfig {
 
         @WithDefault("")
@@ -38,5 +43,12 @@ public interface CockpitConfig {
 
         @WithDefault("")
         Optional<String> path();
+    }
+
+    interface CollectionConfig {
+
+        @WithDefault("")
+        Optional<String> project();
+
     }
 }

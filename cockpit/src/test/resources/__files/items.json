@@ -1,0 +1,12 @@
+[
+  {
+    "key": "greeting",
+    "variant": "friendly",
+    "content": "Hi {name}"
+  },
+  {
+    "key": "greeting",
+    "variant": "formal",
+    "content": "Good day, {name}"
+  }
+]
